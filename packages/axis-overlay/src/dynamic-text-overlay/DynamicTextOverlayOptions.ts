@@ -17,15 +17,11 @@ export type DynamicTextOverlayOptions = {
     text?: string;
 
     /**
-     * ***TODO:NOT IMPLEMENTED***
-     * I think this might only be supported on cameras running firmware 11 and
-     * above. The Axis documentation is not clear on this, but on 2023–09–19
-     * there is an entry in the changelog: "Overlay API: New parameter added to
-     * Dynamic text overlays." and I suspect this is the parameter.
+     * The text index to apply the text to. This is only supported on devices
+     * with firmware v11 or higher.
      *
-     * Select a dynamic text slot. If omitted, a default value of 1 is used. A text index for a slot maps text to the
-     * modifiers #D1...#D16 . For example, text_index=3&text=Hello means that
-     * Hello will be mapped to #D3.
+     * A text index for a slot maps text to the modifiers #D1...#D16. For
+     * example, text_index=3&text=Hello means that Hello will be mapped to #D3.
      */
     text_index?: TextIndex;
 

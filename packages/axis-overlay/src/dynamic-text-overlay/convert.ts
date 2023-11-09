@@ -13,5 +13,5 @@ export function toQueryString(options: DynamicTextOverlayOptions): string | null
         return null;
     }
 
-    return parameters.map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+    return parameters.map(([key, value]) => (value ? `${key}=${encodeURIComponent(value)}`: null)).join('&');
 }

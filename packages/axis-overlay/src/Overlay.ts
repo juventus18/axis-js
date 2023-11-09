@@ -1,6 +1,7 @@
 import { Connection } from 'axis-core';
 import { DynamicTextOverlayOptions } from './dynamic-text-overlay';
 import { DynamicTextOverlayRequest } from './dynamic-text-overlay/DynamicTextOverlayRequest';
+import { TextIndex } from './dynamic-text-overlay/TTextIndex';
 
 /**
  * Class responsible for running overlay operations on devices from Axis Communication.
@@ -30,12 +31,17 @@ export class Overlay {
      * value camera 1 is used. This argument is only valid for Axis products
      * with more than one video source. That is cameras with multiple view areas
      * and video encoders with multiple video channels.
+     * @param textIndex The text index to query. This is only
+     * supported on devices with firmware v11 or higher.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
      */
-    public async getDynamicTextOverlay(camera: number = 1): Promise<string| null> {
+    public async getDynamicTextOverlay(camera: number = 1, textIndex: TextIndex = null): Promise<string| null> {
         const options: DynamicTextOverlayOptions = { action:"gettext", camera: camera };
+        if (textIndex) {
+            options.text_index = textIndex;
+        }
         const request = new DynamicTextOverlayRequest(this.connection, options);
         const response = await request.send();
 
@@ -52,12 +58,17 @@ export class Overlay {
      * value camera 1 is used. This argument is only valid for Axis products
      * with more than one video source. That is cameras with multiple view areas
      * and video encoders with multiple video channels.
+     * @param textIndex The text index to apply the text to. This is only
+     * supported on devices with firmware v11 or higher.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
      */
-    public async setDynamicTextOverlay(text: string, camera: number = 1): Promise<void> {
+    public async setDynamicTextOverlay(text: string, camera: number = 1, textIndex: TextIndex = null): Promise<void> {
         const options: DynamicTextOverlayOptions = { action:"settext", text: text, camera: camera };
+        if (textIndex) {
+            options.text_index = textIndex;
+        }
         const request = new DynamicTextOverlayRequest(this.connection, options);
         const response = await request.send();
 
