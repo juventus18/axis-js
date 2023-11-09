@@ -43,5 +43,6 @@ yarn add axis-overlay
 ### `Overlay`
 
 The `Overlay` class is the main class in the package. With it, you can run
-overlay operations on a camera. Currently, only [Dynamic Text Overlay](https://www.axis.com/vapix-library/subjects/t10175981/section/t10007638/display?section=t10007638-t10003585) operations
-are supported.
+overlay operations on a camera. Currently, only [Dynamic Text
+Overlay](https://www.axis.com/vapix-library/subjects/t10175981/section/t10007638/display?section=t10007638-t10003585)
+operations are supported.
