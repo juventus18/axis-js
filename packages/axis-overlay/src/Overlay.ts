@@ -64,8 +64,11 @@ export class Overlay {
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
      */
-    public async setDynamicTextOverlay(text: string, camera: number = 1, textIndex: TextIndex = null): Promise<void> {
-        const options: DynamicTextOverlayOptions = { action:"settext", text: text, camera: camera };
+    public async setDynamicTextOverlay(text: string, camera: number | null = null, textIndex: TextIndex = null): Promise<void> {
+        const options: DynamicTextOverlayOptions = { action:"settext", text: text };
+        if (camera) {
+            options.camera = camera;
+        }
         if (textIndex) {
             options.text_index = textIndex;
         }
